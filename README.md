@@ -4,7 +4,15 @@ This guide provides step-by-step instructions for configuring your Cyberdeck, in
 
 ---
 
+## Parts used
+
+* [8.8" LCD Display from Ali Express - US $37](https://www.aliexpress.us/item/3256805590955482.html?spm=a2g0o.order_list.order_list_main.5.21ef1802Ir5lVt&gatewayAdapt=glo2usa)
+* [Raspberry PI 2 Model B for low power consumption](https://www.raspberrypi.com/products/raspberry-pi-2-model-b/)
+* [Bluetooth USB Keyboard - US $14](https://a.co/d/6yGGrCh)
+
 ## **1. Change the Rotation of the LCD Display Video**
+
+The following instructions are from [this thread](https://forums.raspberrypi.com/viewtopic.php?t=247619#p1730799). Thanks RPi Community!
 
 To rotate the LCD display to a horizontal orientation:
 
