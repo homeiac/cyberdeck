@@ -1,0 +1,7 @@
+[Unit]
+Description=Monitor and Pair Bluetooth Keyboard
+After=bluetooth.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/enable-default-agent-and-pair.sh

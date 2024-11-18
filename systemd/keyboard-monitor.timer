@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Bluetooth Keyboard Monitor Periodically
+
+[Timer]
+OnUnitActiveSec=1m
+Unit=keyboard-monitor.service
+
+[Install]
+WantedBy=timers.target
