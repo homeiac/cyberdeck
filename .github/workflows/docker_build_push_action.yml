@@ -2,9 +2,6 @@ name: Build and Push Docker Image
 
 on:
   push:
-    paths:
-      - 'openaictl/**'
-      - '.github/workflows/docker-build-and-push.yml'
     branches:
       - main
 
@@ -17,8 +14,31 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensure all tags are fetched
 
-      # Set up Docker Buildx for multi-platform builds
+      # Fetch the latest Git tag
+      - name: Get latest Git tag
+        id: git-tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+      # Get the Git short SHA
+      - name: Get Git short SHA
+        id: git-sha
+        run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      # Increment the patch version and prepare the new tag
+      - name: Increment version
+        id: increment-version
+        run: |
+          OLD_TAG=${{ env.TAG }}
+          NEW_TAG=$(echo $OLD_TAG | awk -F. -v OFS=. '{$3+=1; print}')
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "NEW_TAG_SHORT=$NEW_TAG-${{ env.SHORT_SHA }}" >> $GITHUB_ENV
+
+      # Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -36,8 +56,13 @@ jobs:
           push: true
           tags: |
             gshiva/openaictl:latest
-            gshiva/openaictl:${{ github.sha }}
+            gshiva/openaictl:${{ env.NEW_TAG }}
+            gshiva/openaictl:${{ env.NEW_TAG_SHORT }}
 
-      # Optionally add QEMU for cross-platform builds
-      - name: Install QEMU for ARM builds
-        uses: docker/setup-qemu-action@v2
+      # Create and push the new Git tag
+      - name: Create and push Git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a ${{ env.NEW_TAG }} -m "Release ${{ env.NEW_TAG }}"
+          git push origin ${{ env.NEW_TAG }}
