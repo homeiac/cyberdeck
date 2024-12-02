@@ -13,6 +13,17 @@ functionality, managing Tmux sessions, and increasing the terminal font size.
 * [Raspberry PI 2 Model B for low power
   consumption](https://www.raspberrypi.com/products/raspberry-pi-2-model-b/)
 * [Bluetooth USB Keyboard - US $14](https://a.co/d/6yGGrCh)
+* [Frameless Chalkboard - US $1.25](https://www.dollartree.com/jot-frameless-chalk-board-8x11-in/355385)
+
+## Cyberdeck Frame
+
+The Cyberdeck uses frameless chalkboard for the keyboard base and also the battery holder.
+
+![Mounted Cyberdeck](cyber-deck.jpg)
+
+Here is the [3D model](cyberdeck-screen-support-v5.f3d) that is used to 3D print the screen holder.
+
+[![Autodesk Fusion 360 model for 3D printing](cyber-deck-screen-support.png)](./cyberdeck-screen-support-v5.f3d)
 
 ## **1. Change the Rotation of the LCD Display Video**
 
