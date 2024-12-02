@@ -131,7 +131,6 @@ when using terminal only window.
 
 [![asciicast](https://asciinema.org/a/OYazu5MjPy0aW6n1ezEvBmvLw.svg)](https://asciinema.org/a/OYazu5MjPy0aW6n1ezEvBmvLw)
 
-
 ### Install and Configure Tmux
 
 1. Install Tmux:
@@ -146,7 +145,7 @@ when using terminal only window.
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
    ```
 
-3. Update your `.tmux.conf` file:
+3. Update your [.tmux.conf](./scripts/.tmux.conf) file:
 
    ```bash
    nano ~/.tmux.conf
@@ -178,7 +177,7 @@ when using terminal only window.
 
 ### Automate Tmux with Systemd
 
-1. Create the Systemd service:
+1. Create the Systemd service [tmux.service](./systemd/tmux.service):
 
    ```bash
    sudo nano /etc/systemd/system/tmux.service

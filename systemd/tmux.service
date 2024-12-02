@@ -1,0 +1,14 @@
+[Unit]
+Description=Tmux session manager
+After=multi-user.target
+
+[Service]
+Type=forking
+User=<your-username>
+WorkingDirectory=/home/<your-username>
+ExecStart=/usr/bin/tmux new-session -d -s default
+ExecStop=/usr/bin/tmux kill-session -t default
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
