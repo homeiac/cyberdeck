@@ -1,3 +1,4 @@
+import shutil
 import subprocess
 import openai
 from dotenv import load_dotenv
@@ -27,10 +28,29 @@ if os.path.exists(history_file):
 atexit.register(readline.write_history_file, history_file)
 
 
+def get_terminal_height():
+    """Get the terminal height dynamically."""
+    try:
+        return shutil.get_terminal_size().lines
+    except OSError:
+        return 24  # Default terminal height if not detected
+
+
 def display_with_pager(output):
-    """Pipe the output through the 'less' command for pagination."""
-    process = subprocess.Popen(['less', '-RFX'], stdin=subprocess.PIPE, text=True)
-    process.communicate(input=output)
+    """Display output using 'less' with conditional auto-quit."""
+    lines = output.splitlines()
+    terminal_height = get_terminal_height()
+
+    # Add -F (auto-quit) if the output fits on one screen
+    less_flags = ['-R']
+    if len(lines) <= terminal_height - 2:  # Reserve 2 lines for prompt space
+        less_flags.append('-F')
+
+    try:
+        process = subprocess.Popen(['less'] + less_flags, stdin=subprocess.PIPE, text=True)
+        process.communicate(input=output)
+    except subprocess.SubprocessError as e:
+        print(f"Error while using less: {e}")
 
 
 def main():
