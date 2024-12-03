@@ -12,6 +12,7 @@ functionality, managing Tmux sessions, and increasing the terminal font size.
   $37](https://www.aliexpress.us/item/3256805590955482.html?spm=a2g0o.order_list.order_list_main.5.21ef1802Ir5lVt&gatewayAdapt=glo2usa)
 * [Raspberry PI 2 Model B for low power
   consumption](https://www.raspberrypi.com/products/raspberry-pi-2-model-b/)
+  (works out to 8 hours with RPI + Screen and whopping 24 hours with no screen)
 * [Bluetooth USB Keyboard - US $14](https://a.co/d/6yGGrCh)
 * [Frameless Chalkboard - US $1.25](https://www.dollartree.com/jot-frameless-chalk-board-8x11-in/355385)
 
