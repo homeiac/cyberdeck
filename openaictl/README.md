@@ -12,6 +12,7 @@
 - **Customizable**: Configure model, token limits, and API key via the `.env` file.
 - **Secure API Key Handling**: Loads OpenAI API key and other configurations from the `.env` file.
 - **Dockerized**: Fully containerized for ease of use across different systems and architectures.
+- **Multiple Architecture Support**: Runs on linux/armv7, linux/amd64, linux/arm64
 
 ---
 
@@ -79,7 +80,16 @@ If running locally (not with Docker):
    docker build -t openaictl .
    ```
 
-2. **Run the Chatbot**:
+   **For Multiple Architecture build on your Machine**:
+
+   ```bash
+   docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t <your container registry>/openaictl:<tag> --push .
+   ```
+
+   > **Note**: Multiarchitecture builds will not be visible by using `docker images` command.
+   > Your registry will show the different images.
+
+3. **Run the Chatbot**:
 
    ```bash
    docker run --rm -it --env-file .env openaictl
